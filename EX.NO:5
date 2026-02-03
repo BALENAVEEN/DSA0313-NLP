@@ -1,0 +1,12 @@
+from nltk.stem import PorterStemmer
+import nltk
+nltk.download('punkt')
+
+ps = PorterStemmer()
+
+words = ["running", "jumps", "easily", "flying", "studies"]
+
+stems = [ps.stem(w) for w in words]
+
+print("Original:", words)
+print("Stemmed :", stems)
