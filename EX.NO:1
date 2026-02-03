@@ -1,0 +1,18 @@
+import re
+
+text = "Contact us at support123@example.com or call 9876543210 today."
+
+# Match email pattern
+email_pattern = r'\b[\w.-]+@[\w.-]+\.\w+\b'
+emails = re.findall(email_pattern, text)
+
+# Search first phone number
+phone_pattern = r'\b\d{10}\b'
+phone = re.search(phone_pattern, text)
+
+# Replace digits with X
+masked = re.sub(r'\d', 'X', text)
+
+print("Emails found:", emails)
+print("Phone found:", phone.group() if phone else "None")
+print("Masked text:", masked)
