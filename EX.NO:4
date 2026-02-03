@@ -1,0 +1,14 @@
+def plural_fsm(noun):
+    if noun.endswith(("s", "x", "z", "ch", "sh")):
+        return noun + "es"
+
+    if noun.endswith("y") and noun[-2] not in "aeiou":
+        return noun[:-1] + "ies"
+
+    return noun + "s"
+
+
+words = ["cat", "bus", "box", "baby", "boy", "brush"]
+
+for w in words:
+    print(w, "->", plural_fsm(w))
