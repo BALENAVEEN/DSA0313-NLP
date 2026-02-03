@@ -1,0 +1,17 @@
+def ends_with_ab_fsa(s):
+    state = 0
+
+    for ch in s:
+        if state == 0:
+            state = 1 if ch == 'a' else 0
+        elif state == 1:
+            state = 1 if ch == 'a' else 2
+        elif state == 2:
+            state = 1 if ch == 'a' else 0
+
+    return state == 2
+
+
+tests = ["ab", "aab", "babab", "aba", "bbb", "aaab"]
+for t in tests:
+    print(t, "Accepted" if ends_with_ab_fsa(t) else "Rejected")
