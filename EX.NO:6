@@ -1,0 +1,25 @@
+import random
+
+text = "the cat sat on the mat the cat ate fish"
+
+# Tokenize
+words = text.split()
+
+# Build bigrams
+bigrams = {}
+for i in range(len(words)-1):
+    key = words[i]
+    next_word = words[i+1]
+    bigrams.setdefault(key, []).append(next_word)
+
+# Generate text using bigram model
+current_word = random.choice(words)
+generated = [current_word]
+
+for _ in range(10):
+    next_words = bigrams.get(current_word, words)
+    current_word = random.choice(next_words)
+    generated.append(current_word)
+
+print("Generated Text:")
+print(" ".join(generated))
