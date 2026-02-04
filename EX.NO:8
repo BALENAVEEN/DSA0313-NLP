@@ -1,0 +1,34 @@
+from collections import defaultdict
+import random
+
+# Training data (word, tag)
+train_data = [
+    ("the","DT"), ("cat","NN"), ("runs","VB"),
+    ("a","DT"), ("dog","NN"), ("runs","VB"),
+    ("the","DT"), ("dog","NN")
+]
+
+# Build probability table
+word_tag = defaultdict(list)
+
+for word, tag in train_data:
+    word_tag[word].append(tag)
+
+# Tagging function (stochastic choice)
+def stochastic_tag(sentence):
+    words = sentence.split()
+    result = []
+    
+    for w in words:
+        if w in word_tag:
+            tag = random.choice(word_tag[w])
+        else:
+            tag = "NN"   # default
+        result.append((w, tag))
+    
+    return result
+
+# Test
+sentence = "the dog runs"
+print("Stochastic POS Tags:")
+print(stochastic_tag(sentence))
