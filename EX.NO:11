@@ -1,0 +1,32 @@
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["dog"], ["cat"]],
+    "V": [["chased"], ["saw"]]
+}
+
+def parse(symbol, words):
+    if len(words) == 0:
+        return False
+    
+    if symbol in grammar:
+        for rule in grammar[symbol]:
+            remaining = words
+            valid = True
+            for sym in rule:
+                if remaining and parse(sym, [remaining[0]]):
+                    remaining = remaining[1:]
+                else:
+                    valid = False
+                    break
+            if valid and not remaining:
+                return True
+    else:
+        return symbol == words[0]
+    
+    return False
+
+sentence = "the dog chased a cat".split()
+print("Valid Sentence:", parse("S", sentence))
