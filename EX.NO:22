@@ -1,0 +1,22 @@
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
+def reference_resolution(text):
+    doc = nlp(text)
+    last_noun = None
+    resolved = []
+    
+    for token in doc:
+        if token.pos_ == "NOUN":
+            last_noun = token.text
+            resolved.append(token.text)
+        elif token.text.lower() in ["he", "she", "it"] and last_noun:
+            resolved.append(last_noun)
+        else:
+            resolved.append(token.text)
+    
+    return " ".join(resolved)
+
+text = "John bought a car. He loves it."
+print(reference_resolution(text))
