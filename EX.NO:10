@@ -1,0 +1,14 @@
+def transformation_tagging(sentence):
+    words = sentence.split()
+    tags = ["NN"] * len(words)  # Default tag
+    
+    for i, word in enumerate(words):
+        if word.lower() in ["is", "am", "are"]:
+            tags[i] = "VB"
+        if word.endswith("ing"):
+            tags[i] = "VBG"
+    
+    return list(zip(words, tags))
+
+sentence = "He is playing cricket"
+print(transformation_tagging(sentence))
