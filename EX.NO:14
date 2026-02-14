@@ -1,0 +1,13 @@
+def check_agreement(sentence):
+    words = sentence.split()
+    
+    if words[0] in ["He", "She", "It"] and words[1] not in ["is", "runs"]:
+        return "Agreement Error"
+    
+    if words[0] in ["They", "We"] and words[1] not in ["are", "run"]:
+        return "Agreement Error"
+    
+    return "Agreement Correct"
+
+print(check_agreement("He is playing"))
+print(check_agreement("They is playing"))
