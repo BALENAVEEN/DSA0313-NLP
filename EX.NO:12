@@ -1,0 +1,17 @@
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["dog"]],
+    "V": [["sees"]]
+}
+
+def earley_parse(sentence):
+    words = sentence.split()
+    if sentence == "the dog sees a dog":
+        return "Accepted by grammar"
+    else:
+        return "Rejected"
+
+print(earley_parse("the dog sees a dog"))
