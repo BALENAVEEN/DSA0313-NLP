@@ -1,0 +1,15 @@
+import re
+
+def parse_fopc(expression):
+    pattern = r'(\w+)\((\w+),(\w+)\)'
+    match = re.match(pattern, expression)
+    
+    if match:
+        predicate = match.group(1)
+        arg1 = match.group(2)
+        arg2 = match.group(3)
+        return f"Predicate: {predicate}, Arguments: {arg1}, {arg2}"
+    else:
+        return "Invalid Expression"
+
+print(parse_fopc("Loves(John,Mary)"))
