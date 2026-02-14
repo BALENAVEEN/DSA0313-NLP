@@ -1,0 +1,12 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+text = ["Machine learning is powerful.",
+        "It is used in many applications."]
+
+vectorizer = TfidfVectorizer()
+tfidf = vectorizer.fit_transform(text)
+
+score = cosine_similarity(tfidf[0:1], tfidf[1:2])
+
+print("Coherence Score:", score[0][0])
