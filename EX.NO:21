@@ -1,0 +1,11 @@
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
+sentence = "The intelligent student solved the complex problem."
+doc = nlp(sentence)
+
+print("Noun Phrases and Meanings:")
+
+for chunk in doc.noun_chunks:
+    print("Noun Phrase:", chunk.text)
